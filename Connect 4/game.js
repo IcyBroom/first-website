@@ -1,6 +1,12 @@
 const WIDTH = 700;
 const HEIGHT = 600;
 
+const settings = {
+    columns: 7,
+    rows: 6,
+    connectNum: 4,
+}
+
 let canvas  = document.getElementById('canvas')
 canvas.width = WIDTH;
 canvas.height = HEIGHT;
@@ -48,7 +54,7 @@ class Board {
         return board;
     }
     drawBoard(){
-        fill(0,0,255);
+        fill(70,70,255);
         fillRect(0,0,this.width,this.height)
 
         let pieceWidth = parseInt(this.width / this.columns)
@@ -90,8 +96,25 @@ class Board {
             this.winner = (this.turn % 2) + 1
             this.message();
         }
-        
+        if(this.checkTie()){
+            this.winner = 3;
+            this.message();
+        }
         this.turn++;
+    }
+    checkTie(){
+        let tie = true;
+        for(let i = 0; i < this.rows; i++){
+            for(let j = 0; j < this.columns; j++){
+                if(this.board[i][j] == 0){
+                    tie = false;
+                }
+                else if(this.checkWin() == true){
+                    tie = false;
+                }
+            }
+        }
+        return tie;
     }
     checkWin(){
         let win = false;
@@ -183,11 +206,16 @@ class Board {
         return win;
     }
     message(){
-        alert("Player " + (this.winner) + " wins!")
+        if(this.winner == 1 || this.winner == 2){
+        document.querySelector("#message").innerHTML = "Player " + this.winner + " wins!"
+        }
+        else if(this.winner == 3){
+            document.querySelector("#message").innerHTML = "Tie!"
+        }
     }
 }
 
-let game = new Board(6,7,WIDTH,HEIGHT,4);
+let game = new Board(settings.rows,settings.columns,WIDTH,HEIGHT,settings.connectNum);
 game.createBoard();
 
 document.onkeydown = (event) => {
