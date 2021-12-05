@@ -1,0 +1,29 @@
+html,body{
+    background-color: darkgrey
+}
+.container{
+    display: flex;
+
+    justify-content: space-evenly;
+    background-color: lightgrey;
+    border-radius: 10px;
+    padding: 1%;
+    margin-top: 1%;
+    font-size: x-large;
+    border-radius: 14px;
+}
+a{ 
+    text-decoration: none;
+    color: inherit;
+}
+.nav:hover{
+    color:white;
+   transition: .5s;
+    background-color: grey;
+    padding: 1px 13px;
+    border-radius: 12px;
+}
+#idk{
+    margin-top: 20%;
+    text-align: center;
+}
