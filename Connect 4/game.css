@@ -1,11 +1,17 @@
 canvas{
     display:flex;
     border: 3px solid black;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-right: auto;
     margin-left: auto;
 }
 #message{
     font-size: x-large;
     text-align: center;
+}
+#table{
+    display: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top : 1%;
 }

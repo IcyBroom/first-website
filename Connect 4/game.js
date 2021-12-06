@@ -213,6 +213,12 @@ class Board {
             document.querySelector("#message").innerHTML = "Tie!"
         }
     }
+    reset(){
+        this.board = this.createBoard();
+        this.turn = 1;
+        this.winner = 0;
+        document.querySelector("#message").innerHTML = "";
+    }
 }
 
 let game = new Board(settings.rows,settings.columns,WIDTH,HEIGHT,settings.connectNum);
@@ -223,6 +229,8 @@ document.onkeydown = (event) => {
     game.makeMove(parseInt(event.key)-1)
     }
 }
+let resetButton = document.querySelector("#reset");
+resetButton.onclick = () => { game.reset()}
 
 window.setInterval(()=>{
     game.drawBoard();
