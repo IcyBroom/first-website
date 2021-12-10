@@ -1,5 +1,5 @@
-const WIDTH = 700;
-const HEIGHT = 600;
+const WIDTH = 630;
+const HEIGHT = 540;
 
 const settings = {
     columns: 7,
@@ -25,11 +25,26 @@ const fillEllipse = (x,y,w,h)=>{
     context.ellipse(x,y,w,h,0,0,Math.PI*2);
     context.fill();
 }
+const fillText = (text,x,y,size) => {
+    context.font = `${size}px Arial`;
+    context.fillText(text,x,y);
+}
 
 const fill = (r,g,b) => {
     context.fillStyle = 'rgb('+r+','+g+','+b+')'
 }
 
+function getMousePos(canvas, evt) {
+    let rect = canvas.getBoundingClientRect();
+    return {
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
+    };
+}
+let mouse = {x: 0, y: 0};
+document.addEventListener("mousemove", (e) => {
+    mouse = getMousePos(canvas, e);
+});
 
 class Board {
     turn = 0; 
@@ -83,6 +98,8 @@ class Board {
                 
             }
         }
+        fill(0,0,0)
+        fillText(parseInt(mouse.x) + "," + parseInt(mouse.y),10,50,20)
     }
     makeMove(columnNum){
         if(this.winner != 0){ return;}
@@ -227,6 +244,11 @@ game.createBoard();
 document.onkeydown = (event) => {
     if (parseInt(event.key)){
     game.makeMove(parseInt(event.key)-1)
+    }
+}
+document.onclick = (event) => {
+    if(mouse.x > 0 && mouse.x < WIDTH && mouse.y > 0 && mouse.y < HEIGHT){
+        game.makeMove(parseInt(mouse.x/parseInt(game.width / game.columns)))
     }
 }
 let resetButton = document.querySelector("#reset");

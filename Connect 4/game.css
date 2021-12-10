@@ -1,7 +1,7 @@
 canvas{
     display:flex;
     border: 3px solid black;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -13,5 +13,5 @@ canvas{
     display: absolute;
     margin-left: auto;
     margin-right: auto;
-    margin-top : 1%;
+    margin-top : .5%;
 }
