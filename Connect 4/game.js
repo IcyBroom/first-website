@@ -1,15 +1,15 @@
-const WIDTH = 630;
-const HEIGHT = 540;
 
 const settings = {
+    width : 630,
+    height : 540,
     columns: 7,
     rows: 6,
     connectNum: 4,
 }
 
 let canvas  = document.getElementById('canvas')
-canvas.width = WIDTH;
-canvas.height = HEIGHT;
+canvas.width = settings.width;
+canvas.height = settings.height;
 const context = canvas.getContext('2d');
 
 const fillRect = (x,y,w,h)=>{
@@ -238,7 +238,8 @@ class Board {
     }
 }
 
-let game = new Board(settings.rows,settings.columns,WIDTH,HEIGHT,settings.connectNum);
+
+let game = new Board(settings.rows,settings.columns,settings.width,settings.height,settings.connectNum);
 game.createBoard();
 
 document.onkeydown = (event) => {
@@ -247,7 +248,7 @@ document.onkeydown = (event) => {
     }
 }
 document.onclick = (event) => {
-    if(mouse.x > 0 && mouse.x < WIDTH && mouse.y > 0 && mouse.y < HEIGHT){
+    if(mouse.x > 0 && mouse.x < settings.width && mouse.y > 0 && mouse.y < settings.height){
         game.makeMove(parseInt(mouse.x/parseInt(game.width / game.columns)))
     }
 }
