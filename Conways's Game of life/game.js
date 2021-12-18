@@ -85,10 +85,8 @@ class gameOfLife{
                     fillRect(j*pieceWidth,i*pieceHeight,pieceWidth,pieceHeight)                }
             }
         }
-        this.gridLines()
         fill(0,0,0)
-        fillText(parseInt(mouse.x) + "," + parseInt(mouse.y),10,50,20)
-
+        this.gridLines()
     }
     gridLines(){
         for(let i = 0; i < this.size; i++){

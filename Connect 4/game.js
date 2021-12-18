@@ -98,8 +98,6 @@ class Board {
                 
             }
         }
-        fill(0,0,0)
-        fillText(parseInt(mouse.x) + "," + parseInt(mouse.y),10,50,20)
     }
     makeMove(columnNum){
         if(this.winner != 0){ return;}
