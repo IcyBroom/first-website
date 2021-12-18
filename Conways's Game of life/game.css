@@ -1,0 +1,47 @@
+/* canvas{
+    display:flex;
+    border: 3px solid black;
+    margin-top: 5px;
+    margin-right: auto;
+    margin-left: auto;
+} */
+.gameItems{
+    width: 400px;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    justify-content: center;
+    margin-top: 20px;
+    grid-template-columns: repeat(10,40px);
+    grid-template-rows: repeat(12,50px);
+}
+canvas{
+    grid-column: 1 / -1;
+    grid-row: 1 / 9;
+}
+#startButton{
+    margin-top: 5px;
+    grid-column: 1 / -1;
+    grid-row: 9 / 10;
+}
+.slider{
+    grid-column: 1 / 8;
+    /* grid-row: 5 / -1; */
+}
+.text{
+    grid-column: 8 / -1;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#message{
+    font-size: x-large;
+    text-align: center;
+}
+#table{
+    display: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top : .5%;
+}
