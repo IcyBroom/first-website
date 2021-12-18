@@ -136,8 +136,6 @@ class gameOfLife{
         }
         return neighbors
     }
-    
-        
 }
 
 let game = new gameOfLife(settings.rows,settings.width,settings.height)
