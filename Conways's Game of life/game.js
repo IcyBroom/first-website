@@ -148,11 +148,13 @@ rowSlider.oninput = ()=>{
 }
 
 document.onclick = ()=>{
-    if( game.board[parseInt(mouse.y/settings.height*settings.rows)][parseInt(mouse.x/settings.width*settings.columns)] == 1){
-        game.board[parseInt(mouse.y/settings.height*settings.rows)][parseInt(mouse.x/settings.width*settings.columns)] = 0
-    }
-    else{
-        game.board[parseInt(mouse.y/settings.height*settings.rows)][parseInt(mouse.x/settings.width*settings.columns)] = 1
+    if(mouse.x < settings.width && mouse.y < settings.height && mouse.x > 0 && mouse.y > 0){
+        if( game.board[parseInt(mouse.y/settings.height*settings.rows)][parseInt(mouse.x/settings.width*settings.columns)] == 1){
+            game.board[parseInt(mouse.y/settings.height*settings.rows)][parseInt(mouse.x/settings.width*settings.columns)] = 0
+        }
+        else{
+            game.board[parseInt(mouse.y/settings.height*settings.rows)][parseInt(mouse.x/settings.width*settings.columns)] = 1
+        }
     }
 }
     
