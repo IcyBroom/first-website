@@ -244,6 +244,9 @@ document.onkeydown = (event) => {
     if (parseInt(event.key)){
     game.makeMove(parseInt(event.key)-1)
     }
+    if (event.key == "r"){
+        game.reset();
+    }
 }
 document.onclick = (event) => {
     if(mouse.x > 0 && mouse.x < settings.width && mouse.y > 0 && mouse.y < settings.height){

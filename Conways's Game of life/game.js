@@ -1,8 +1,8 @@
 const settings = {
     width : 400,
     height : 400,
-    columns: 10,
-    rows: 10,
+    columns: 20,
+    rows: 20,
     speed: 10
 }
 
@@ -145,6 +145,7 @@ rowSlider.oninput = ()=>{
     settings.columns = rowSlider.value
     document.getElementById('size').innerHTML = "Size: "+ rowSlider.value
     game = new gameOfLife(settings.rows,settings.width,settings.height)
+    game.drawBoard()
 }
 
 document.onclick = ()=>{
@@ -155,7 +156,15 @@ document.onclick = ()=>{
         else{
             game.board[parseInt(mouse.y/settings.height*settings.rows)][parseInt(mouse.x/settings.width*settings.columns)] = 1
         }
+        if(document.getElementById('startButton').innerHTML == "Stop"){
+            window.clearInterval(intervalId)
+            intervalId = window.setInterval(()=>{
+                game.drawBoard()
+            },1000/settings.speed)
+            document.getElementById('startButton').innerHTML = "Start"
+        }
     }
+    game.drawBoard()
 }
     
 
@@ -183,4 +192,9 @@ document.getElementById('startButton').onclick = ()=>{
 speedSlider.oninput = ()=>{
     document.getElementById('speed').innerHTML = "Speed: "+ speedSlider.value
     settings.speed = speedSlider.value
+    window.clearInterval(intervalId)
+        intervalId = window.setInterval(()=>{
+            game.drawBoard()
+            game.update()
+        },1000/settings.speed)
 }

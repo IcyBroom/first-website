@@ -244,6 +244,11 @@ document.onclick = (event) => {
         game.makeMove(rowNum,colNum);
     }
 }
+document.onkeydown = (event) => {
+    if(event.key == "r"){
+        game.reset();
+    }
+}
 let resetButton = document.querySelector("#reset");
 resetButton.onclick = () => { game.reset()}
 
