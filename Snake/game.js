@@ -52,6 +52,11 @@ class Snake{
         this.height = height;
         this.snake.initialize(rows,columns);
         this.board = this.createBoard();
+        if(document.getElementById('darkmodeButton').innerHTML == "Darkmode"){
+            this.darkmode = false;
+        }else{
+            this.darkmode = true;
+        }
     }
     createBoard(){
         let board = []
@@ -245,21 +250,25 @@ document.onkeydown = (e) => {
         case 'ArrowLeft':
             if(game.snake.direction != 'right'){
                 game.snake.direction = 'left'
+                game.update()
             }
             break;
         case 'ArrowUp':
             if(game.snake.direction != 'down'){
                 game.snake.direction = 'up'
+                game.update()
             }
             break;
         case 'ArrowRight':
             if(game.snake.direction != 'left'){
                 game.snake.direction = 'right'
+                game.update()
             } 
             break;
         case 'ArrowDown':
             if(game.snake.direction != 'up'){
                 game.snake.direction = 'down'
+                game.update()
             }
             break;
     }
