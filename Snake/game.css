@@ -7,16 +7,16 @@
     justify-content: center;
     margin-top: 20px;
     grid-template-columns: repeat(6,1fr);
-    grid-template-rows: repeat(6,1fr)
+    grid-template-rows: repeat(4,100px) repeat(2,50px);
 }
 canvas{
     grid-column: 1 / -1;
     grid-row: 1 / 5;
 }
 .buttons{
-    margin-top: auto;
+    /* margin-top: auto;
     margin-bottom: auto;
-    height: 50%;
+    height: 50%; */
 }
 #startButton{
     grid-column: 1 / 3;

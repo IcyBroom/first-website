@@ -101,7 +101,7 @@ class Snake{
         if(this.darkmode){context.strokeStyle = 'rgb(75,75,75)'; fill(255,255,255)}
         else{context.strokeStyle = 'rgb(0,0,0)'; fill(0,0,0)}
         fillText(this.score,30,50,50)
-        this.gridLines()
+        
     }
     gridLines(){
         for(let i = 0; i < this.rows; i++){
@@ -177,6 +177,7 @@ class Snake{
         }
     }
     checkAppleCollision(){
+        if(this.checkCollision()){return}
         if(this.board[this.snake.y[0]][this.snake.x[0]] == 2){
             this.snake.length++
             this.board[this.createApple(this.board).y][this.createApple(this.board).x] = 2
