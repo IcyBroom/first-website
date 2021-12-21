@@ -31,6 +31,7 @@ let fillLine = (x1,y1,x2,y2)=>{
 
 
 class Snake{
+    done = false;
     score = 0;
     darkmode = true;
     snake = {
@@ -209,6 +210,7 @@ class Snake{
         if(this.darkmode){context.strokeStyle = 'rgb(75,75,75)'; fill(255,255,255)}
         else{context.strokeStyle = 'rgb(0,0,0)'; fill(0,0,0)}
         fillText("Game Over",70,380,50)
+        this.done = true;
     }
 
 }
@@ -273,7 +275,7 @@ document.getElementById('resetButton').onclick = ()=>{
     game = new Snake(settings.rows,settings.columns,settings.width,settings.height)
     game.drawBoard()
     if(document.getElementById('startButton').innerHTML == 'Stop'){
-        document.getElementById('startButton').click()  
+        document.getElementById('startButton').innerHTML = 'Start'
     }
 }
 
@@ -281,6 +283,7 @@ game.drawBoard()
 let intervalId
 
 document.getElementById('startButton').onclick = ()=>{
+    if(game.done == true){ document.getElementById('resetButton').click(); return;}
     if(document.getElementById('startButton').innerHTML == "Start"){
         window.clearInterval(intervalId)
         intervalId = window.setInterval(()=>{
