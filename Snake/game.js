@@ -108,16 +108,7 @@ class Snake{
         
         if(this.darkmode){context.strokeStyle = 'rgb(75,75,75)'; fill(255,255,255)}
         else{context.strokeStyle = 'rgb(0,0,0)'; fill(0,0,0)}
-        fillText(this.score,30,50,50)
-        
-    }
-    gridLines(){
-        for(let i = 0; i < this.rows; i++){
-            fillLine(0,i*this.height/this.rows,this.width,i*this.height/this.rows)
-        }
-        for(let i = 0; i < this.columns; i++){
-            fillLine(i*this.width/this.columns,0,i*this.width/this.columns,this.height)
-        }
+        fillText(this.score,30,50,50)     
     }
     refreshBoard(){
         let newBoard = JSON.parse(JSON.stringify(this.board));
