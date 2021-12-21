@@ -32,6 +32,7 @@ let fillLine = (x1,y1,x2,y2)=>{
 
 class Snake{
     done = false;
+    running = false;
     score = 0;
     darkmode = true;
     snake = {
@@ -75,7 +76,8 @@ class Snake{
                 }
             }
         }
-        board[this.createApple(board).y][this.createApple(board).x] = 2
+        let appl = this.createApple(board)
+        board[appl.y][appl.x] = 2
         return board
     }
     drawBoard(){
@@ -186,7 +188,8 @@ class Snake{
         if(this.checkCollision()){return}
         if(this.board[this.snake.y[0]][this.snake.x[0]] == 2){
             this.snake.length++
-            this.board[this.createApple(this.board).y][this.createApple(this.board).x] = 2
+            let apple = this.createApple(this.board)
+            this.board[apple.y][apple.x] = 2
             this.score++
         }
     }
@@ -218,7 +221,7 @@ class Snake{
 let game = new Snake(settings.rows,settings.columns,settings.width,settings.height)
 
 document.getElementById('easyButton').onclick = () => {
-    settings.speed = 5
+    settings.speed = 7
     settings.rows = 10
     settings.columns = 10
     game = new Snake(settings.rows,settings.columns,settings.width,settings.height)
@@ -250,23 +253,47 @@ document.getElementById('hardButton').onclick = () => {
 document.onkeydown = (e) => {
     switch(e.key){
         case 'ArrowLeft':
-            if(game.snake.direction != 'right' && (game.snake.y[0] != game.snake.y[1] && game.snake.x[0]-1 != game.snake.x[1])){
-                game.snake.direction = 'left'
+            if(game.snake.direction != 'right' && game.running && game.snake.direction != 'left'){
+                if((game.snake.y[0] != game.snake.y[1] && game.snake.x[0]-1 != game.snake.x[1])){
+                    game.snake.direction = 'left'
+                }
+                else{
+                    game.update()
+                    game.snake.direction = 'left'
+                }
             }
             break;
         case 'ArrowUp':
-            if(game.snake.direction != 'down' && (game.snake.y[0]-1 != game.snake.y[1] && game.snake.x[0] != game.snake.x[1])){
-                game.snake.direction = 'up'
+            if(game.snake.direction != 'down' && game.running && game.snake.direction != 'up'){
+                if((game.snake.y[0]-1 != game.snake.y[1] && game.snake.x[0] != game.snake.x[1])){
+                    game.snake.direction = 'up'
+                }
+                else{
+                    game.update()
+                    game.snake.direction = 'up'
+                }
             }
             break;
         case 'ArrowRight':
-            if(game.snake.direction != 'left' && (game.snake.y[0] != game.snake.y[1] && game.snake.x[0]+1 != game.snake.x[1])){
-                game.snake.direction = 'right'
-            } 
+            if(game.snake.direction != 'left' && game.running && game.snake.direction != 'right'){
+                if((game.snake.y[0] != game.snake.y[1] && game.snake.x[0]+1 != game.snake.x[1])){
+                    game.snake.direction = 'right'
+                }
+                else{
+                    game.update()
+                    game.snake.direction = 'right'
+                }
+            }
             break;
         case 'ArrowDown':
-            if(game.snake.direction != 'up' && (game.snake.y[0]+1 != game.snake.y[1] && game.snake.x[0] != game.snake.x[1])){
-                game.snake.direction = 'down'
+            if(game.snake.direction != 'up' && game.running && game.snake.direction != 'down'){
+                if((game.snake.y[0]+1 != game.snake.y[1] && game.snake.x[0] != game.snake.x[1])){
+                    game.snake.direction = 'down'
+                }
+                else{
+                    game.update()
+                    game.snake.direction = 'down'
+                }
             }
             break;
     }
@@ -285,6 +312,7 @@ let intervalId
 document.getElementById('startButton').onclick = ()=>{
     if(game.done == true){ document.getElementById('resetButton').click(); return;}
     if(document.getElementById('startButton').innerHTML == "Start"){
+        game.running = true;
         window.clearInterval(intervalId)
         intervalId = window.setInterval(()=>{
             game.drawBoard()
@@ -292,6 +320,7 @@ document.getElementById('startButton').onclick = ()=>{
         },1000/settings.speed)
         document.getElementById('startButton').innerHTML = "Stop"
     }else{
+        game.running = false;
         window.clearInterval(intervalId)
         intervalId = window.setInterval(()=>{
             game.drawBoard()
