@@ -248,27 +248,23 @@ document.getElementById('hardButton').onclick = () => {
 document.onkeydown = (e) => {
     switch(e.key){
         case 'ArrowLeft':
-            if(game.snake.direction != 'right'){
+            if(game.snake.direction != 'right' && (game.snake.y[0] != game.snake.y[1] && game.snake.x[0]-1 != game.snake.x[1])){
                 game.snake.direction = 'left'
-                game.update()
             }
             break;
         case 'ArrowUp':
-            if(game.snake.direction != 'down'){
+            if(game.snake.direction != 'down' && (game.snake.y[0]-1 != game.snake.y[1] && game.snake.x[0] != game.snake.x[1])){
                 game.snake.direction = 'up'
-                game.update()
             }
             break;
         case 'ArrowRight':
-            if(game.snake.direction != 'left'){
+            if(game.snake.direction != 'left' && (game.snake.y[0] != game.snake.y[1] && game.snake.x[0]+1 != game.snake.x[1])){
                 game.snake.direction = 'right'
-                game.update()
             } 
             break;
         case 'ArrowDown':
-            if(game.snake.direction != 'up'){
+            if(game.snake.direction != 'up' && (game.snake.y[0]+1 != game.snake.y[1] && game.snake.x[0] != game.snake.x[1])){
                 game.snake.direction = 'down'
-                game.update()
             }
             break;
     }
