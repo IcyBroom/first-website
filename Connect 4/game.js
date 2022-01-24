@@ -4,8 +4,7 @@ const settings = {
     height : 540,
     columns: 7,
     rows: 6,
-    connectNum: 4,
-    lol:5
+    connectNum: 4
 }
 
 let canvas  = document.getElementById('canvas')
