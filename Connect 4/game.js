@@ -5,6 +5,7 @@ const settings = {
     columns: 7,
     rows: 6,
     connectNum: 4,
+    lol:5
 }
 
 let canvas  = document.getElementById('canvas')
